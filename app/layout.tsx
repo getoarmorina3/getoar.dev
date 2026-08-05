@@ -7,7 +7,7 @@ import {
 } from "@/components/json-ld";
 import { site } from "@/content/site";
 import { absoluteUrl, siteDescription, siteUrl } from "@/lib/site";
-import "./vercel-brand.css";
+import "./brand.css";
 import "./globals.css";
 
 const geistSans = Geist({

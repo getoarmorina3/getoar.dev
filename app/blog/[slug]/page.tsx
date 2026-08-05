@@ -78,10 +78,10 @@ export default async function BlogPost({
       active="writing"
       header={
         <>
-          <p className="vbg-context">
+          <p className="brand-context">
             <Link
               href="/blog"
-              className="vbg-link"
+              className="brand-link"
               data-variant="secondary"
               transitionTypes={["nav-back"]}
             >
@@ -89,10 +89,10 @@ export default async function BlogPost({
             </Link>
           </p>
           <PageTitle>{post.title}</PageTitle>
-          <p className="vbg-meta">
+          <p className="brand-meta">
             <time dateTime={post.date}>{formatLongDate(post.date)}</time>
           </p>
-          <p className="vbg-lede">{post.description}</p>
+          <p className="brand-lede">{post.description}</p>
         </>
       }
     >
@@ -106,8 +106,8 @@ export default async function BlogPost({
           ]),
         ]}
       />
-      <article className="vbg-section">
-        <div className="vbg-reading vbg-flow">
+      <article className="brand-section">
+        <div className="brand-reading brand-flow">
           <Content />
         </div>
       </article>

@@ -15,31 +15,31 @@ export function SiteShell({
   active?: NavKey;
 }) {
   return (
-    <div className="vbg-report" data-theme="auto">
-      <div className="vbg-shell">
-        <div className="vbg-custom-column">
-          <a className="vbg-skip-link" href="#main">
+    <div className="brand-report" data-theme="auto">
+      <div className="brand-shell">
+        <div className="brand-custom-column">
+          <a className="brand-skip-link" href="#main">
             Skip to content
           </a>
-          <header className="vbg-header">
+          <header className="brand-header">
             <div
-              className="vbg-masthead"
+              className="brand-masthead"
               style={{ viewTransitionName: "site-masthead" }}
             >
-              <div className="vbg-identity">
+              <div className="brand-identity">
                 <Link
                   href="/"
-                  className="vbg-custom-identity-link"
+                  className="brand-custom-identity-link"
                   transitionTypes={active === "home" ? undefined : ["nav-back"]}
                   aria-current={active === "home" ? "page" : undefined}
                 >
                   {site.name}
                 </Link>
               </div>
-              <div className="vbg-document-meta">
+              <div className="brand-document-meta">
                 <Link
                   href="/about"
-                  className="vbg-link"
+                  className="brand-link"
                   data-variant={active === "about" ? undefined : "secondary"}
                   aria-current={active === "about" ? "page" : undefined}
                   transitionTypes={
@@ -54,7 +54,7 @@ export function SiteShell({
                 </Link>
                 <Link
                   href="/blog"
-                  className="vbg-link"
+                  className="brand-link"
                   data-variant={active === "writing" ? undefined : "secondary"}
                   aria-current={active === "writing" ? "page" : undefined}
                   transitionTypes={
@@ -68,13 +68,13 @@ export function SiteShell({
             {header}
           </header>
           {children ? (
-            <main id="main" className="vbg-custom-main">
+            <main id="main" className="brand-custom-main">
               <PageTransition>
-                <div className="vbg-custom-page-body">{children}</div>
+                <div className="brand-custom-page-body">{children}</div>
               </PageTransition>
             </main>
           ) : (
-            <main id="main" className="vbg-custom-main vbg-visually-hidden">
+            <main id="main" className="brand-custom-main brand-visually-hidden">
               Home
             </main>
           )}

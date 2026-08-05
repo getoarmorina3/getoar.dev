@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Page-owned portfolio topology only. Do not restyle published .vbg-* internals. */
+/* Page-owned layout helpers. Prefer brand-* tokens from brand.css. */
 
 :root {
   --vt-exit: 120ms;
@@ -28,13 +28,13 @@ body {
 }
 
 /* Stick footer to the viewport bottom when page content is short. */
-.vbg-custom-column {
+.brand-custom-column {
   display: flex;
   flex-direction: column;
   min-height: calc(100dvh - 2 * clamp(40px, 7vw, 80px));
 }
 
-.vbg-custom-main {
+.brand-custom-main {
   flex: 1 1 auto;
 }
 
@@ -99,111 +99,111 @@ body {
   }
 }
 
-.vbg-custom-page-body > .vbg-section + .vbg-section {
-  margin-block-start: var(--vbg-space-12);
+.brand-custom-page-body > .brand-section + .brand-section {
+  margin-block-start: var(--brand-space-12);
 }
 
-.vbg-section > .vbg-heading-24 + :is(.vbg-custom-cert-list, .vbg-custom-path-list, .vbg-custom-post-list, .vbg-reading) {
-  margin-block-start: var(--vbg-space-4);
+.brand-section > .brand-heading-24 + :is(.brand-custom-cert-list, .brand-custom-path-list, .brand-custom-post-list, .brand-reading) {
+  margin-block-start: var(--brand-space-4);
 }
 
-.vbg-section > .vbg-reading + .vbg-custom-path-list {
-  margin-block-start: var(--vbg-space-4);
+.brand-section > .brand-reading + .brand-custom-path-list {
+  margin-block-start: var(--brand-space-4);
 }
 
-.vbg-section > :is(.vbg-custom-cert-list, .vbg-custom-path-list, .vbg-custom-post-list) + .vbg-meta {
-  margin-block-start: var(--vbg-space-6);
+.brand-section > :is(.brand-custom-cert-list, .brand-custom-path-list, .brand-custom-post-list) + .brand-meta {
+  margin-block-start: var(--brand-space-6);
 }
 
-.vbg-custom-cert-list,
-.vbg-custom-path-list,
-.vbg-custom-post-list {
+.brand-custom-cert-list,
+.brand-custom-path-list,
+.brand-custom-post-list {
   list-style: none;
   display: grid;
-  gap: var(--vbg-space-4);
-  max-width: var(--vbg-reading-width);
+  gap: var(--brand-space-4);
+  max-width: var(--brand-reading-width);
   margin: 0;
   padding: 0;
 }
 
-.vbg-custom-cert {
+.brand-custom-cert {
   display: grid;
-  gap: var(--vbg-space-1);
+  gap: var(--brand-space-1);
 }
 
-.vbg-custom-cert > * {
+.brand-custom-cert > * {
   margin: 0;
 }
 
-.vbg-custom-degree {
+.brand-custom-degree {
   margin: 0;
-  color: var(--vbg-gray-1000);
-  font-weight: var(--vbg-weight-medium);
+  color: var(--brand-gray-1000);
+  font-weight: var(--brand-weight-medium);
 }
 
-.vbg-custom-path {
+.brand-custom-path {
   display: grid;
   grid-template-columns: 7.5rem minmax(0, 1fr);
-  column-gap: var(--vbg-space-4);
+  column-gap: var(--brand-space-4);
   align-items: baseline;
 }
 
-.vbg-custom-path > * {
+.brand-custom-path > * {
   margin: 0;
 }
 
-.vbg-custom-post-list > li {
+.brand-custom-post-list > li {
   margin: 0;
 }
 
-.vbg-custom-post-item {
+.brand-custom-post-item {
   display: grid;
-  gap: var(--vbg-space-1);
+  gap: var(--brand-space-1);
 }
 
-.vbg-custom-post-item > * {
+.brand-custom-post-item > * {
   margin: 0;
 }
 
-.vbg-custom-post-row {
+.brand-custom-post-row {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-  gap: var(--vbg-space-2) var(--vbg-space-4);
+  gap: var(--brand-space-2) var(--brand-space-4);
 }
 
-.vbg-custom-post-row > * {
+.brand-custom-post-row > * {
   margin: 0;
 }
 
-.vbg-custom-identity-link {
+.brand-custom-identity-link {
   color: inherit;
   text-decoration: none;
 }
 
-.vbg-custom-identity-link:hover {
+.brand-custom-identity-link:hover {
   text-decoration: underline;
   text-underline-offset: 0.15em;
 }
 
-.vbg-custom-rule {
+.brand-custom-rule {
   width: 2.5rem;
   height: 1px;
-  margin-block: var(--vbg-space-8);
+  margin-block: var(--brand-space-8);
   margin-inline: 0;
   border: 0;
-  background: var(--vbg-color-gray-400);
+  background: var(--brand-gray-400);
 }
 
-.vbg-header > :has(> .vbg-title) {
+.brand-header > :has(> .brand-title) {
   grid-column: 1 / span 8;
-  max-width: var(--vbg-title-measure);
+  max-width: var(--brand-title-measure);
 }
 
 @media (max-width: 599px) {
-  .vbg-custom-path {
+  .brand-custom-path {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--vbg-space-1);
+    gap: var(--brand-space-1);
   }
 }

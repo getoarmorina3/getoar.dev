@@ -31,34 +31,34 @@ export default function BlogIndex() {
       active="writing"
       header={
         <>
-          <h1 className="vbg-visually-hidden">Writing</h1>
-          <p className="vbg-lede">
+          <h1 className="brand-visually-hidden">Writing</h1>
+          <p className="brand-lede">
             Short notes that wander and land somewhere useful — usually near
             code.
           </p>
         </>
       }
     >
-      <section className="vbg-section" aria-labelledby="posts">
-        <h2 id="posts" className="vbg-visually-hidden">
+      <section className="brand-section" aria-labelledby="posts">
+        <h2 id="posts" className="brand-visually-hidden">
           Posts
         </h2>
-        <ul className="vbg-custom-post-list">
+        <ul className="brand-custom-post-list">
           {posts.map((post) => (
-            <li key={post.slug} className="vbg-custom-post-item">
-              <div className="vbg-custom-post-row">
+            <li key={post.slug} className="brand-custom-post-item">
+              <div className="brand-custom-post-row">
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="vbg-link"
+                  className="brand-link"
                   transitionTypes={["nav-forward"]}
                 >
                   {post.title}
                 </Link>
-                <p className="vbg-meta">
+                <p className="brand-meta">
                   <time dateTime={post.date}>{formatDate(post.date)}</time>
                 </p>
               </div>
-              <p className="vbg-meta">{post.description}</p>
+              <p className="brand-meta">{post.description}</p>
             </li>
           ))}
         </ul>

@@ -28,21 +28,21 @@ export default function AboutPage() {
       header={
         <>
           <PageTitle>About</PageTitle>
-          <p className="vbg-lede">
+          <p className="brand-lede">
             Education, courses that shaped how I build, and the places I have
             worked.
           </p>
         </>
       }
     >
-      <section className="vbg-section" aria-labelledby="education">
-        <h2 id="education" className="vbg-heading-24">
+      <section className="brand-section" aria-labelledby="education">
+        <h2 id="education" className="brand-heading-24">
           Education
         </h2>
-        <ul className="vbg-custom-cert-list">
-          <li className="vbg-custom-cert">
-            <p className="vbg-custom-degree">{site.education.degree}</p>
-            <p className="vbg-meta">
+        <ul className="brand-custom-cert-list">
+          <li className="brand-custom-cert">
+            <p className="brand-custom-degree">{site.education.degree}</p>
+            <p className="brand-meta">
               {site.education.school}
               <span aria-hidden="true"> · </span>
               {site.education.years}
@@ -51,17 +51,17 @@ export default function AboutPage() {
           {certifications.map((cert) => (
             <li
               key={`${cert.title}-${cert.issuer}`}
-              className="vbg-custom-cert"
+              className="brand-custom-cert"
             >
               <a
                 href={cert.href}
-                className="vbg-link"
+                className="brand-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {cert.title}
               </a>
-              <p className="vbg-meta">
+              <p className="brand-meta">
                 {cert.issuer}
                 <span aria-hidden="true"> · </span>
                 {cert.year}
@@ -71,22 +71,22 @@ export default function AboutPage() {
         </ul>
       </section>
 
-      <section className="vbg-section" aria-labelledby="path">
-        <h2 id="path" className="vbg-heading-24">
+      <section className="brand-section" aria-labelledby="path">
+        <h2 id="path" className="brand-heading-24">
           Path
         </h2>
-        <div className="vbg-reading">
+        <div className="brand-reading">
           {pathIntro.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
-        <ul className="vbg-custom-path-list">
+        <ul className="brand-custom-path-list">
           {work.map((job) => (
-            <li key={`${job.company}-${job.span}`} className="vbg-custom-path">
-              <p className="vbg-meta">{job.span}</p>
+            <li key={`${job.company}-${job.span}`} className="brand-custom-path">
+              <p className="brand-meta">{job.span}</p>
               <p>
                 {job.role}
-                <span className="vbg-meta"> · {job.company}</span>
+                <span className="brand-meta"> · {job.company}</span>
               </p>
             </li>
           ))}

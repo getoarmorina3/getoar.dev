@@ -28,16 +28,16 @@ export default function Home() {
       header={
         <>
           <PageTitle>{site.title}</PageTitle>
-          <div className="vbg-lede">
+          <div className="brand-lede">
             <p>{site.bio[0]}</p>
           </div>
-          <div className="vbg-reading">
+          <div className="brand-reading">
             <p>{site.bio[1]}</p>
             <p>
               You can learn more about my background and interests through my{" "}
               <Link
                 href="/about"
-                className="vbg-link"
+                className="brand-link"
                 transitionTypes={["nav-forward"]}
               >
                 about
@@ -45,7 +45,7 @@ export default function Home() {
               page and{" "}
               <Link
                 href="/blog"
-                className="vbg-link"
+                className="brand-link"
                 transitionTypes={["nav-forward"]}
               >
                 writing
@@ -53,7 +53,7 @@ export default function Home() {
               . Find me on{" "}
               <a
                 href="https://github.com/getoarmorina3"
-                className="vbg-link"
+                className="brand-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -62,14 +62,14 @@ export default function Home() {
               and{" "}
               <a
                 href="https://www.linkedin.com/in/getoarmorina/"
-                className="vbg-link"
+                className="brand-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 LinkedIn
               </a>
               , or email{" "}
-              <a href={`mailto:${site.email}`} className="vbg-link">
+              <a href={`mailto:${site.email}`} className="brand-link">
                 {site.email}
               </a>
               .
