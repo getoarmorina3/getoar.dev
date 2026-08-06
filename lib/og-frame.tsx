@@ -40,7 +40,7 @@ function titleFontSize(title: string) {
 /** Soft top-right light field, centered title in Geist. */
 export function OgFrame({
   title,
-  brand = "getoar.dev",
+  brand = "hello@getoar.dev",
 }: {
   title: string;
   brand?: string;
@@ -89,11 +89,10 @@ export function OgFrame({
           bottom: 52,
           display: "flex",
           justifyContent: "center",
-          fontSize: 17,
+          fontSize: 20,
           fontWeight: 400,
-          letterSpacing: "0.32em",
-          color: "rgba(255,255,255,0.38)",
-          paddingLeft: "0.32em",
+          letterSpacing: "0.02em",
+          color: "rgba(255,255,255,0.62)",
         }}
       >
         {brand.toLowerCase()}
