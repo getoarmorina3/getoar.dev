@@ -1,21 +1,89 @@
-@import "tailwindcss";
-
-/* Page-owned layout helpers. Prefer brand-* tokens from brand.css. */
+/* Design tokens + document reset. Component styles live in *.module.css. */
 
 :root {
   --vt-exit: 120ms;
   --vt-enter: 180ms;
   --vt-morph: 280ms;
+
+  --font-sans: var(
+    --font-geist-sans,
+    "Geist",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif
+  );
+  --font-mono: var(
+    --font-geist-mono,
+    "Geist Mono",
+    "SFMono-Regular",
+    Consolas,
+    monospace
+  );
+
+  --bg: light-dark(oklch(1 0 0), oklch(0 0 0));
+  --gray-100: light-dark(oklch(0.961 0 0), oklch(0.218 0 0));
+  --gray-400: light-dark(oklch(0.937 0 0), oklch(0.301 0 0));
+  --gray-600: light-dark(oklch(0.732 0 0), oklch(0.623 0 0));
+  --gray-900: light-dark(oklch(0.42 0 0), oklch(0.706 0 0));
+  --gray-1000: light-dark(oklch(0.205 0 0), oklch(0.946 0 0));
+  --focus: light-dark(
+    oklch(57.61% 0.2508 258.23),
+    oklch(71.7% 0.1648 250.794)
+  );
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --radius-sm: 6px;
+  --radius: 8px;
+
+  --type-page-title: 2.5rem;
+  --type-title: 2rem;
+  --type-section: 1.5rem;
+  --type-subsection: 1.25rem;
+  --type-lede: 1.125rem;
+  --type-compact: 0.875rem;
+  --type-label: 0.8125rem;
+  --type-meta: 0.8125rem;
+
+  --weight-regular: 400;
+  --weight-heading: 450;
+  --weight-medium: 500;
+
+  --leading-body: 24px;
+  --leading-compact: 20px;
+  --leading-caption: 18px;
+  --leading-page-title: 48px;
+  --leading-title: 40px;
+  --leading-section: 32px;
+  --leading-subsection: 26px;
+  --leading-lede: 28px;
+
+  --flow-tight: var(--space-2);
+  --flow-copy: var(--space-4);
+  --flow-group: var(--space-8);
+  --flow-section: var(--space-16);
+
+  --reading-width: 68ch;
+  --title-measure: 24ch;
+  --content-width: 1200px;
+
   color-scheme: light;
-  background: oklch(1 0 0);
-  color: oklch(0.205 0 0);
+  background: var(--bg);
+  color: var(--gray-1000);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    background: oklch(0 0 0);
-    color: oklch(0.946 0 0);
   }
 }
 
@@ -23,84 +91,13 @@ html,
 body {
   margin: 0;
   min-height: 100%;
+  min-height: 100dvh;
   background: inherit;
   color: inherit;
 }
 
-/* Fill the viewport so the footer sits at the bottom on short pages. */
-.brand-report,
-.brand-shell {
-  min-height: 100dvh;
-}
-
-.brand-custom-column {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  min-height: 100%;
-}
-
-.brand-custom-main {
-  flex: 1 1 auto;
-}
-
-.brand-footer {
-  margin-block-start: auto;
-}
-
-/* Keep name + About/Writing on one row on small screens.
-   Must beat brand.css mobile :has() stacking (0,4,0). */
-@media (max-width: 599px) {
-  .brand-report .brand-masthead:has(> .brand-identity):has(> .brand-document-meta) {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: var(--brand-space-3);
-    grid-template-columns: unset;
-  }
-
-  .brand-report .brand-masthead:has(> .brand-identity):has(> .brand-document-meta) > .brand-identity,
-  .brand-report .brand-masthead:has(> .brand-identity):has(> .brand-document-meta) > .brand-document-meta {
-    grid-column: unset;
-    grid-row: unset;
-  }
-
-  .brand-report .brand-masthead:has(> .brand-identity):has(> .brand-document-meta) > .brand-identity {
-    flex: 1 1 auto;
-    min-width: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .brand-report .brand-masthead:has(> .brand-identity):has(> .brand-document-meta) > .brand-document-meta {
-    flex: 0 0 auto;
-    justify-content: flex-end;
-    flex-wrap: nowrap;
-  }
-
-  .brand-custom-path {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--brand-space-1);
-    grid-template-columns: none;
-    grid-template-areas: none;
-  }
-
-  .brand-custom-path-company {
-    order: 1;
-  }
-
-  .brand-custom-path-roles {
-    order: 2;
-  }
-
-  .brand-custom-path-span {
-    order: 3;
-  }
+html {
+  -webkit-font-smoothing: antialiased;
 }
 
 ::view-transition {
@@ -162,182 +159,4 @@ body {
     animation-duration: 0s !important;
     animation-delay: 0s !important;
   }
-}
-
-.brand-custom-page-body > .brand-section + .brand-section {
-  margin-block-start: var(--brand-space-12);
-}
-
-.brand-section > .brand-heading-24 + :is(.brand-custom-cert-list, .brand-custom-path-list, .brand-custom-post-list, .brand-reading) {
-  margin-block-start: var(--brand-space-4);
-}
-
-.brand-section > .brand-reading + .brand-custom-path-list {
-  margin-block-start: var(--brand-space-4);
-}
-
-.brand-section > :is(.brand-custom-cert-list, .brand-custom-path-list, .brand-custom-post-list) + .brand-meta {
-  margin-block-start: var(--brand-space-6);
-}
-
-.brand-custom-cert-list,
-.brand-custom-path-list,
-.brand-custom-post-list {
-  list-style: none;
-  display: grid;
-  gap: var(--brand-space-4);
-  max-width: var(--brand-reading-width);
-  margin: 0;
-  padding: 0;
-}
-
-.brand-custom-cert {
-  display: grid;
-  gap: var(--brand-space-1);
-}
-
-.brand-custom-cert > * {
-  margin: 0;
-}
-
-.brand-custom-degree {
-  margin: 0;
-  color: var(--brand-gray-1000);
-  font-weight: var(--brand-weight-medium);
-}
-
-.brand-custom-path {
-  display: grid;
-  grid-template-columns: 8.5rem minmax(0, 1fr);
-  column-gap: var(--brand-space-4);
-  row-gap: var(--brand-space-1);
-  align-items: baseline;
-  grid-template-areas:
-    "span company"
-    ". roles";
-}
-
-.brand-custom-path > * {
-  margin: 0;
-}
-
-.brand-custom-path-span {
-  grid-area: span;
-  margin: 0;
-}
-
-.brand-custom-path-company {
-  grid-area: company;
-  margin: 0;
-  color: var(--brand-gray-1000);
-  font-weight: var(--brand-weight-medium);
-}
-
-.brand-custom-path-roles {
-  grid-area: roles;
-  list-style: none;
-  display: grid;
-  gap: var(--brand-space-1);
-  margin: 0;
-  padding: 0;
-}
-
-.brand-custom-path-roles > li {
-  margin: 0;
-}
-
-.brand-custom-post-list > li {
-  margin: 0;
-}
-
-.brand-custom-post-item {
-  display: grid;
-  gap: var(--brand-space-1);
-}
-
-.brand-custom-post-item > * {
-  margin: 0;
-}
-
-.brand-custom-post-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--brand-space-2) var(--brand-space-4);
-}
-
-.brand-custom-post-row > * {
-  margin: 0;
-}
-
-/* Blog post: date + description side by side on desktop, stacked on mobile. */
-.brand-custom-post-header {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: baseline;
-  gap: var(--brand-space-2) var(--brand-space-4);
-  max-width: var(--brand-reading-width);
-}
-
-.brand-custom-post-header > * {
-  margin: 0;
-}
-
-.brand-custom-post-date {
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
-
-.brand-custom-post-desc {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-@media (max-width: 599px) {
-  .brand-custom-post-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--brand-space-2);
-  }
-}
-
-.brand-custom-identity-link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.brand-custom-footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--brand-space-2) var(--brand-space-4);
-}
-
-.brand-custom-identity-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
-.brand-custom-rule {
-  width: 2.5rem;
-  height: 1px;
-  margin-block: var(--brand-space-8);
-  margin-inline: 0;
-  border: 0;
-  background: var(--brand-gray-400);
-}
-
-.brand-header > :has(> .brand-title) {
-  grid-column: 1 / span 8;
-  max-width: var(--brand-title-measure);
-}
-
-.brand-header > .brand-custom-post-header {
-  grid-column: 1 / span 8;
-  max-width: var(--brand-reading-width);
-}
-
-.brand-header > .brand-custom-post-header + *,
-.brand-header > * + .brand-custom-post-header {
-  margin-block-start: var(--brand-flow-copy);
 }

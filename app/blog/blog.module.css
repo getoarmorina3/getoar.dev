@@ -1,0 +1,42 @@
+.list {
+  list-style: none;
+  display: grid;
+  gap: var(--space-4);
+  max-width: var(--reading-width);
+  margin: 0;
+  padding: 0;
+  padding-inline-start: 0;
+}
+
+.item {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.item > * {
+  margin: 0;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+}
+
+.metaRow > * {
+  margin: 0;
+}
+
+.desc {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.date {
+  flex: 0 0 auto;
+  margin-inline-start: auto;
+  white-space: nowrap;
+  text-align: end;
+}

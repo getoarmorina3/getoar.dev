@@ -1,11 +1,13 @@
 import { ImageResponse } from "next/og";
-import { OgFrame, ogSize } from "@/lib/og-frame";
-import { site } from "@/content/site";
+import { OgFrame, ogOptions } from "@/lib/og-frame";
 
-export const alt = `Writing · ${site.name}`;
-export const size = ogSize;
+export const alt = "Writing";
+export const size = {
+  width: 1200,
+  height: 630,
+};
 export const contentType = "image/png";
 
-export default function Image() {
-  return new ImageResponse(<OgFrame title="Writing" />, { ...ogSize });
+export default async function Image() {
+  return new ImageResponse(<OgFrame title="Writing" />, await ogOptions());
 }

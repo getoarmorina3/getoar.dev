@@ -4,6 +4,7 @@ import { SiteShell } from "@/components/site-shell";
 import { PageTitle } from "@/components/page-title";
 import { site } from "@/content/site";
 import { siteDescription } from "@/lib/site";
+import ui from "@/styles/ui.module.css";
 
 export const metadata: Metadata = {
   title: {
@@ -32,10 +33,10 @@ export default function Home() {
         header={
           <>
             <PageTitle>{site.title}</PageTitle>
-            <div className="brand-lede">
+            <div className={ui.lede}>
               <p>{site.bio[0]}</p>
             </div>
-            <div className="brand-reading">
+            <div className={ui.reading}>
               <p>{site.bio[1]}</p>
             </div>
           </>

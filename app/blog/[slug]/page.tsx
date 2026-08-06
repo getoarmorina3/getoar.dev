@@ -11,6 +11,7 @@ import { getAllPosts, getPost, getPostContent } from "@/content/posts";
 import { site } from "@/content/site";
 import { formatLongDate } from "@/lib/format-date";
 import { absoluteUrl } from "@/lib/site";
+import ui from "@/styles/ui.module.css";
 
 export const dynamicParams = false;
 
@@ -78,12 +79,10 @@ export default async function BlogPost({
       header={
         <>
           <PageTitle>{post.title}</PageTitle>
-          <div className="brand-custom-post-header">
-            <p className="brand-meta brand-custom-post-date">
-              <time dateTime={post.date}>{formatLongDate(post.date)}</time>
-            </p>
-            <p className="brand-lede brand-custom-post-desc">{post.description}</p>
-          </div>
+          <p className={ui.meta}>
+            <time dateTime={post.date}>{formatLongDate(post.date)}</time>
+          </p>
+          <p className={ui.lede}>{post.description}</p>
         </>
       }
     >
@@ -97,8 +96,8 @@ export default async function BlogPost({
           ]),
         ]}
       />
-      <article className="brand-section">
-        <div className="brand-reading brand-flow">
+      <article className={ui.section}>
+        <div className={`${ui.reading} ${ui.flow}`}>
           <Content />
         </div>
       </article>

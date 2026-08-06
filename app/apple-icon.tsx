@@ -2,12 +2,12 @@ import { ImageResponse } from "next/og";
 import { darkLightGradient, darkLightGrainDataUri } from "@/lib/dark-light";
 
 export const size = {
-  width: 32,
-  height: 32,
+  width: 180,
+  height: 180,
 };
 export const contentType = "image/png";
 
-export default function Icon() {
+export default function AppleIcon() {
   return new ImageResponse(
     (
       <div
@@ -26,14 +26,14 @@ export default function Icon() {
         <img
           src={darkLightGrainDataUri}
           alt=""
-          width={32}
-          height={32}
+          width={180}
+          height={180}
           style={{
             position: "absolute",
             inset: 0,
             width: "100%",
             height: "100%",
-            opacity: 0.22,
+            opacity: 0.2,
             objectFit: "cover",
           }}
         />

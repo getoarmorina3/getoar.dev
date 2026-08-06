@@ -5,6 +5,8 @@ import { SiteShell } from "@/components/site-shell";
 import { PageTitle } from "@/components/page-title";
 import { getAllPosts } from "@/content/posts";
 import { formatDate } from "@/lib/format-date";
+import ui from "@/styles/ui.module.css";
+import styles from "./blog.module.css";
 
 const writingDescription =
   "Notes on product interfaces, craft, AI at work, and systems that stay editable.";
@@ -45,30 +47,32 @@ export default function BlogIndex() {
         header={
           <>
             <PageTitle>Writing</PageTitle>
-            <p className="brand-lede">{writingDescription}</p>
+            <p className={ui.lede}>{writingDescription}</p>
           </>
         }
       >
-        <section className="brand-section" aria-labelledby="posts">
-          <h2 id="posts" className="brand-visually-hidden">
+        <section className={ui.section} aria-labelledby="posts">
+          <h2 id="posts" className={ui.visuallyHidden}>
             Posts
           </h2>
-          <ul className="brand-custom-post-list">
+          <ul className={styles.list}>
             {posts.map((post) => (
-              <li key={post.slug} className="brand-custom-post-item">
-                <div className="brand-custom-post-row">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="brand-link"
-                    transitionTypes={["nav-forward"]}
-                  >
-                    {post.title}
-                  </Link>
-                  <p className="brand-meta">
+              <li key={post.slug} className={styles.item}>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className={ui.link}
+                  transitionTypes={["nav-forward"]}
+                >
+                  {post.title}
+                </Link>
+                <div className={styles.metaRow}>
+                  <p className={`${ui.meta} ${styles.desc}`}>
+                    {post.description}
+                  </p>
+                  <p className={`${ui.meta} ${styles.date}`}>
                     <time dateTime={post.date}>{formatDate(post.date)}</time>
                   </p>
                 </div>
-                <p className="brand-meta">{post.description}</p>
               </li>
             ))}
           </ul>

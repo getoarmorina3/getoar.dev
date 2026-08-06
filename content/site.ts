@@ -18,8 +18,8 @@ export const site = {
     },
   ],
   bio: [
-    "I am a web engineer based in Kosovo, Europe. I work remotely on product interfaces, web apps, and the systems behind them. I care about design and detail, type, spacing, structure, and clean code.",
-    "I grew up around PCs. My dad opened an internet café in 2003, the year I was born, and it is still running. That room was my early classroom. In high school I took a tech job and never really left. I finished school while working and earned a BSc in Computer Science from UBT College.",
+    "I am a web engineer based in Kosovo, Europe. Currently working remotely on product interfaces, web apps, and the systems behind them. I care about design, architecture, and clean code.",
+    "I grew up around computers. My dad opened an internet café in 2003, the year I was born, and it is still running. That room was my early classroom. In high school I took a tech job and never really left. I finished school while working, and kept going through college.",
   ],
   education: {
     school: "UBT College",

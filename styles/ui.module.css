@@ -1,0 +1,352 @@
+/* Shared typography + layout primitives used across pages and MDX. */
+
+.title {
+  max-width: var(--title-measure);
+  margin: 0;
+  color: var(--gray-1000);
+  font-size: var(--type-page-title);
+  font-weight: var(--weight-heading);
+  line-height: var(--leading-page-title);
+  letter-spacing: -0.06em;
+  text-wrap: balance;
+}
+
+.heading {
+  margin: 0 0 var(--space-4);
+  color: var(--gray-1000);
+  font-size: var(--type-section);
+  font-weight: var(--weight-heading);
+  line-height: var(--leading-section);
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.headingMd {
+  margin: 0;
+  color: var(--gray-1000);
+  font-size: var(--type-subsection);
+  font-weight: var(--weight-heading);
+  line-height: var(--leading-subsection);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.headingSm {
+  margin: 0;
+  color: var(--gray-1000);
+  font-size: 1rem;
+  font-weight: var(--weight-heading);
+  line-height: 1.5rem;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.lede {
+  max-width: var(--reading-width);
+  margin: 0;
+  color: var(--gray-900);
+  font-size: var(--type-lede);
+  line-height: var(--leading-lede);
+}
+
+.lede > :global(p),
+.lede > :global(ul),
+.lede > :global(ol) {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.lede > :global(p) + :global(p) {
+  margin-block-start: var(--flow-copy);
+}
+
+.lede :global(strong) {
+  color: var(--gray-1000);
+  font-weight: var(--weight-medium);
+}
+
+/* —— Reading / post prose —— */
+
+.reading,
+.flow {
+  max-width: var(--reading-width);
+  color: var(--gray-1000);
+}
+
+/* Block rhythm for MDX elements — class selectors beat element resets. */
+.block {
+  margin: 0;
+}
+
+.reading > .block + .block,
+.flow > .block + .block {
+  margin-block-start: var(--flow-copy);
+}
+
+.reading > .block + .headingMd,
+.flow > .block + .headingMd {
+  margin-block-start: var(--flow-section);
+}
+
+.reading > .block + .headingSm,
+.flow > .block + .headingSm {
+  margin-block-start: var(--space-8);
+}
+
+.reading > .headingMd + .block,
+.flow > .headingMd + .block,
+.reading > .headingSm + .block,
+.flow > .headingSm + .block {
+  margin-block-start: var(--flow-copy);
+}
+
+.reading :global(p),
+.flow :global(p) {
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+.reading :global(p) :global(strong),
+.flow :global(p) :global(strong),
+.reading :global(li) :global(strong),
+.flow :global(li) :global(strong),
+.reading :global(blockquote) :global(strong),
+.flow :global(blockquote) :global(strong) {
+  color: var(--gray-1000);
+  font-weight: var(--weight-medium);
+}
+
+.reading :global(ul),
+.reading :global(ol),
+.flow :global(ul),
+.flow :global(ol) {
+  margin: 0;
+  padding-inline-start: 1.25rem;
+}
+
+.reading :global(li),
+.flow :global(li) {
+  line-height: var(--leading-body);
+  overflow-wrap: break-word;
+}
+
+.reading :global(li) + :global(li),
+.flow :global(li) + :global(li) {
+  margin-block-start: var(--flow-tight);
+}
+
+.reading :global(li) > :global(p),
+.flow :global(li) > :global(p),
+.reading :global(li) > :global(ul),
+.flow :global(li) > :global(ul),
+.reading :global(li) > :global(ol),
+.flow :global(li) > :global(ol) {
+  margin-block-end: 0;
+}
+
+.reading :global(li) > :global(p) + :global(p),
+.flow :global(li) > :global(p) + :global(p) {
+  margin-block-start: var(--flow-tight);
+}
+
+.reading :global(li) > :global(ul),
+.flow :global(li) > :global(ul),
+.reading :global(li) > :global(ol),
+.flow :global(li) > :global(ol) {
+  margin-block-start: var(--flow-tight);
+}
+
+.reading :global(blockquote),
+.flow :global(blockquote) {
+  padding-inline-start: var(--space-4);
+  border-inline-start: 2px solid var(--gray-400);
+  color: var(--gray-900);
+}
+
+.reading :global(code),
+.reading :global(kbd),
+.reading :global(samp),
+.flow :global(code),
+.flow :global(kbd),
+.flow :global(samp),
+.reading :global(pre),
+.flow :global(pre) {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  font-feature-settings: normal;
+}
+
+.reading :global(code),
+.reading :global(kbd),
+.flow :global(code),
+.flow :global(kbd) {
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+  background: var(--gray-100);
+}
+
+.reading :global(pre),
+.flow :global(pre) {
+  padding: var(--space-4);
+  overflow-x: auto;
+  border-radius: var(--radius);
+  background: var(--gray-100);
+  line-height: 1.5;
+}
+
+.reading :global(pre) :global(code),
+.flow :global(pre) :global(code) {
+  padding: 0;
+  background: transparent;
+  font-size: 0.875rem;
+}
+
+.reading > .rule,
+.flow > .rule {
+  margin-block: var(--space-8);
+}
+
+.reading :global(figure),
+.flow :global(figure) {
+  margin-inline: 0;
+}
+
+.reading :global(figcaption),
+.flow :global(figcaption) {
+  margin-block-start: var(--space-3);
+  color: var(--gray-900);
+  font-size: var(--type-compact);
+  line-height: var(--leading-compact);
+}
+
+/* —— Sections —— */
+
+.section {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-6);
+  row-gap: 0;
+}
+
+.section > * {
+  grid-column: 1 / span 7;
+  min-width: 0;
+  max-width: var(--reading-width);
+  margin-block: 0;
+}
+
+.section > * + * {
+  margin-block-start: var(--flow-copy);
+}
+
+/* Keep Education / Path → content gap (section > * zeros heading margins). */
+.section > .heading + * {
+  margin-block-start: var(--space-4);
+}
+
+.section > .visuallyHidden + * {
+  margin-block-start: 0;
+}
+
+.section > .reading + * {
+  margin-block-start: var(--space-4);
+}
+
+.section + .section {
+  margin-block-start: var(--space-12);
+}
+
+@media (min-width: 601px) and (max-width: 1000px) {
+  .section {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .section > * {
+    grid-column: 1 / span 4;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: var(--space-4);
+  }
+
+  .section > * {
+    grid-column: 1 / -1;
+  }
+}
+
+.meta {
+  margin: 0;
+  color: var(--gray-900);
+  font-size: var(--type-meta);
+  font-weight: var(--weight-regular);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--leading-caption);
+  overflow-wrap: break-word;
+}
+
+.link {
+  color: var(--gray-1000);
+  font-weight: var(--weight-medium);
+  text-decoration: underline;
+  text-decoration-color: var(--gray-600);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.link:hover {
+  text-decoration-color: currentColor;
+}
+
+.linkMuted {
+  color: var(--gray-900);
+  font-weight: var(--weight-regular);
+  text-decoration: underline;
+  text-decoration-color: var(--gray-600);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.linkMuted:hover {
+  color: var(--gray-1000);
+  text-decoration-color: currentColor;
+}
+
+.list {
+  margin: 0;
+  padding-inline-start: 1.25rem;
+}
+
+.list :global(li) + :global(li) {
+  margin-block-start: var(--flow-tight);
+}
+
+.visuallyHidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+.rule {
+  width: 2.5rem;
+  height: 1px;
+  margin-block: var(--space-8);
+  margin-inline: 0;
+  border: 0;
+  background: var(--gray-400);
+}
+
+@media (max-width: 800px) {
+  .title {
+    font-size: var(--type-title);
+    line-height: var(--leading-title);
+  }
+}

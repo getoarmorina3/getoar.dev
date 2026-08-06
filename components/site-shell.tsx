@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { site } from "@/content/site";
 import { PageTransition } from "@/components/page-transition";
+import ui from "@/styles/ui.module.css";
+import styles from "./site-shell.module.css";
 
 type NavKey = "home" | "writing" | "about";
 
@@ -15,32 +17,31 @@ export function SiteShell({
   active?: NavKey;
 }) {
   return (
-    <div className="brand-report" data-theme="auto">
-      <div className="brand-shell">
-        <div className="brand-custom-column">
-          <a className="brand-skip-link" href="#main">
+    <div className={styles.report} data-theme="auto">
+      <div className={styles.shell}>
+        <div className={styles.column}>
+          <a className={styles.skip} href="#main">
             Skip to content
           </a>
-          <header className="brand-header">
+          <header className={styles.header}>
             <div
-              className="brand-masthead"
+              className={styles.masthead}
               style={{ viewTransitionName: "site-masthead" }}
             >
-              <div className="brand-identity">
+              <div className={styles.identity}>
                 <Link
                   href="/"
-                  className="brand-custom-identity-link"
+                  className={styles.identityLink}
                   transitionTypes={active === "home" ? undefined : ["nav-back"]}
                   aria-current={active === "home" ? "page" : undefined}
                 >
                   {site.name}
                 </Link>
               </div>
-              <div className="brand-document-meta">
+              <div className={styles.nav}>
                 <Link
                   href="/about"
-                  className="brand-link"
-                  data-variant={active === "about" ? undefined : "secondary"}
+                  className={active === "about" ? ui.link : ui.linkMuted}
                   aria-current={active === "about" ? "page" : undefined}
                   transitionTypes={
                     active === "about"
@@ -54,8 +55,7 @@ export function SiteShell({
                 </Link>
                 <Link
                   href="/blog"
-                  className="brand-link"
-                  data-variant={active === "writing" ? undefined : "secondary"}
+                  className={active === "writing" ? ui.link : ui.linkMuted}
                   aria-current={active === "writing" ? "page" : undefined}
                   transitionTypes={
                     active === "writing" ? undefined : ["nav-forward"]
@@ -68,24 +68,23 @@ export function SiteShell({
             {header}
           </header>
           {children ? (
-            <main id="main" className="brand-custom-main">
+            <main id="main" className={styles.main}>
               <PageTransition>
-                <div className="brand-custom-page-body">{children}</div>
+                <div className={styles.pageBody}>{children}</div>
               </PageTransition>
             </main>
           ) : (
-            <main id="main" className="brand-custom-main brand-visually-hidden">
+            <main id="main" className={`${styles.main} ${ui.visuallyHidden}`}>
               Home
             </main>
           )}
-          <footer className="brand-footer">
-            <div className="brand-custom-footer-links">
+          <footer className={styles.footer}>
+            <div className={styles.footerLinks}>
               {site.socials.map((social) => (
                 <a
                   key={social.href}
                   href={social.href}
-                  className="brand-link"
-                  data-variant="secondary"
+                  className={ui.linkMuted}
                   {...(social.href.startsWith("http")
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}

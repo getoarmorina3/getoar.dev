@@ -1,0 +1,87 @@
+.list {
+  list-style: none;
+  display: grid;
+  gap: var(--space-4);
+  max-width: var(--reading-width);
+  margin: 0;
+  padding: 0;
+  padding-inline-start: 0;
+}
+
+.cert {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.cert > * {
+  margin: 0;
+}
+
+.degree {
+  margin: 0;
+  color: var(--gray-1000);
+  font-weight: var(--weight-medium);
+}
+
+.path {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  column-gap: var(--space-4);
+  row-gap: var(--space-1);
+  align-items: baseline;
+  grid-template-areas:
+    "span company"
+    ". roles";
+}
+
+.path > * {
+  margin: 0;
+}
+
+.span {
+  grid-area: span;
+  margin: 0;
+}
+
+.company {
+  grid-area: company;
+  margin: 0;
+  color: var(--gray-1000);
+  font-weight: var(--weight-medium);
+}
+
+.roles {
+  grid-area: roles;
+  list-style: none;
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+}
+
+.roles > li {
+  margin: 0;
+}
+
+@media (max-width: 599px) {
+  .path {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+    grid-template-columns: none;
+    grid-template-areas: none;
+  }
+
+  .company {
+    order: 1;
+  }
+
+  .roles {
+    order: 2;
+  }
+
+  .span {
+    order: 3;
+  }
+}

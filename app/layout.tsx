@@ -7,7 +7,6 @@ import {
 } from "@/components/json-ld";
 import { site } from "@/content/site";
 import { absoluteUrl, siteDescription, siteUrl } from "@/lib/site";
-import "./brand.css";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -104,11 +103,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
         <JsonLd data={[personJsonLd(), websiteJsonLd()]} />
         {children}
       </body>

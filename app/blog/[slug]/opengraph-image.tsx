@@ -1,9 +1,11 @@
 import { ImageResponse } from "next/og";
 import { getAllPosts, getPost } from "@/content/posts";
-import { OgFrame, ogSize } from "@/lib/og-frame";
-import { site } from "@/content/site";
+import { OgFrame, ogOptions } from "@/lib/og-frame";
 
-export const size = ogSize;
+export const size = {
+  width: 1200,
+  height: 630,
+};
 export const contentType = "image/png";
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -21,10 +23,5 @@ export default async function Image({
   const post = getPost(slug);
   const title = post?.title ?? "Writing";
 
-  return new ImageResponse(
-    <OgFrame title={title} brand={site.name.toUpperCase()} />,
-    {
-      ...ogSize,
-    },
-  );
+  return new ImageResponse(<OgFrame title={title} />, await ogOptions());
 }
