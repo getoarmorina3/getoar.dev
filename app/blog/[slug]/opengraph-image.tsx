@@ -3,7 +3,6 @@ import { getAllPosts, getPost } from "@/content/posts";
 import { OgFrame, ogSize } from "@/lib/og-frame";
 import { site } from "@/content/site";
 
-export const alt = `${site.name} · Writing`;
 export const size = ogSize;
 export const contentType = "image/png";
 export const dynamic = "force-static";
@@ -23,13 +22,9 @@ export default async function Image({
   const title = post?.title ?? "Writing";
 
   return new ImageResponse(
-    (
-      <OgFrame
-        eyebrow={`${site.name}  ·  Writing`}
-        title={title}
-        footer={post?.description}
-      />
-    ),
-    { ...ogSize },
+    <OgFrame title={title} brand={site.name.toUpperCase()} />,
+    {
+      ...ogSize,
+    },
   );
 }

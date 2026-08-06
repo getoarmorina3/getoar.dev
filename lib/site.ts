@@ -6,7 +6,7 @@ export const siteUrl = (
 ).replace(/\/$/, "");
 
 export const siteDescription =
-  "Web engineer based in Kosovo. Product interfaces, exacting design, and clean code. Remote.";
+  "Getoar Morina is a web engineer based in Kosovo, Europe. He builds product interfaces and web apps with a focus on design detail, clean code, and best practices. Remote.";
 
 export const siteTagline = `${site.title} · ${site.location}`;
 

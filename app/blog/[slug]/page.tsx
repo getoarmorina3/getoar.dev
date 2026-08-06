@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   JsonLd,
@@ -78,21 +77,13 @@ export default async function BlogPost({
       active="writing"
       header={
         <>
-          <p className="brand-context">
-            <Link
-              href="/blog"
-              className="brand-link"
-              data-variant="secondary"
-              transitionTypes={["nav-back"]}
-            >
-              Writing
-            </Link>
-          </p>
           <PageTitle>{post.title}</PageTitle>
-          <p className="brand-meta">
-            <time dateTime={post.date}>{formatLongDate(post.date)}</time>
-          </p>
-          <p className="brand-lede">{post.description}</p>
+          <div className="brand-custom-post-header">
+            <p className="brand-meta brand-custom-post-date">
+              <time dateTime={post.date}>{formatLongDate(post.date)}</time>
+            </p>
+            <p className="brand-lede brand-custom-post-desc">{post.description}</p>
+          </div>
         </>
       }
     >

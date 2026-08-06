@@ -4,11 +4,12 @@ import { absoluteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
+  const latestPost = posts[0] ? new Date(posts[0].date) : new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: absoluteUrl("/"),
-      lastModified: new Date(),
+      lastModified: latestPost,
       changeFrequency: "weekly",
       priority: 1,
     },
@@ -16,21 +17,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: absoluteUrl("/about"),
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.7,
+      priority: 0.8,
     },
     {
       url: absoluteUrl("/blog"),
-      lastModified: posts[0] ? new Date(posts[0].date) : new Date(),
+      lastModified: latestPost,
       changeFrequency: "weekly",
       priority: 0.9,
+    },
+    {
+      url: absoluteUrl("/llms.txt"),
+      lastModified: latestPost,
+      changeFrequency: "weekly",
+      priority: 0.3,
+    },
+    {
+      url: absoluteUrl("/feed.xml"),
+      lastModified: latestPost,
+      changeFrequency: "weekly",
+      priority: 0.4,
     },
   ];
 
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: absoluteUrl(`/blog/${post.slug}`),
     lastModified: new Date(post.date),
-    changeFrequency: "yearly",
-    priority: 0.8,
+    changeFrequency: "monthly",
+    priority: 0.85,
   }));
 
   return [...staticRoutes, ...postRoutes];

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { JsonLd, aboutPageJsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { SiteShell } from "@/components/site-shell";
 import { PageTitle } from "@/components/page-title";
 import { certifications } from "@/content/certs";
@@ -7,34 +8,42 @@ import { pathIntro, work } from "@/content/work";
 
 export const metadata: Metadata = {
   title: "About",
-  description:
-    "Education and path for Getoar Morina, web engineer based in Kosovo.",
+  description: `Education, courses, and career path for ${site.name}, web engineer based in Kosovo, Europe.`,
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About",
-    description:
-      "Education and path for Getoar Morina, web engineer based in Kosovo.",
+    title: `About · ${site.name}`,
+    description: `Education, courses, and career path for ${site.name}, web engineer based in Kosovo, Europe.`,
     url: "/about",
-    type: "website",
+    type: "profile",
   },
 };
 
 export default function AboutPage() {
   return (
-    <SiteShell
-      active="about"
-      header={
-        <>
-          <PageTitle>About</PageTitle>
-          <p className="brand-lede">
-            Education, courses that shaped how I build, and the places I have
-            worked.
-          </p>
-        </>
-      }
-    >
+    <>
+      <JsonLd
+        data={[
+          aboutPageJsonLd(),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" },
+          ]),
+        ]}
+      />
+      <SiteShell
+        active="about"
+        header={
+          <>
+            <PageTitle>About</PageTitle>
+            <p className="brand-lede">
+              Education, courses that shaped how I build, and the places I have
+              worked.
+            </p>
+          </>
+        }
+      >
       <section className="brand-section" aria-labelledby="education">
         <h2 id="education" className="brand-heading-24">
           Education
@@ -83,15 +92,28 @@ export default function AboutPage() {
         <ul className="brand-custom-path-list">
           {work.map((job) => (
             <li key={`${job.company}-${job.span}`} className="brand-custom-path">
-              <p className="brand-meta">{job.span}</p>
-              <p>
-                {job.role}
-                <span className="brand-meta"> · {job.company}</span>
-              </p>
+              <p className="brand-custom-path-company">{job.company}</p>
+              <ul className="brand-custom-path-roles">
+                {job.roles.map((role) => (
+                  <li key={`${role.title}-${role.start}`}>
+                    <span className="brand-meta">
+                      {role.title}
+                      {role.span ? (
+                        <>
+                          <span aria-hidden="true"> · </span>
+                          {role.span}
+                        </>
+                      ) : null}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="brand-meta brand-custom-path-span">{job.span}</p>
             </li>
           ))}
         </ul>
       </section>
     </SiteShell>
+    </>
   );
 }

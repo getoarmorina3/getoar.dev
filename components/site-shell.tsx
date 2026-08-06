@@ -78,6 +78,23 @@ export function SiteShell({
               Home
             </main>
           )}
+          <footer className="brand-footer">
+            <div className="brand-custom-footer-links">
+              {site.socials.map((social) => (
+                <a
+                  key={social.href}
+                  href={social.href}
+                  className="brand-link"
+                  data-variant="secondary"
+                  {...(social.href.startsWith("http")
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                >
+                  {social.label}
+                </a>
+              ))}
+            </div>
+          </footer>
         </div>
       </div>
     </div>

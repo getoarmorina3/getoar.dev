@@ -27,15 +27,80 @@ body {
   color: inherit;
 }
 
-/* Stick footer to the viewport bottom when page content is short. */
+/* Fill the viewport so the footer sits at the bottom on short pages. */
+.brand-report,
+.brand-shell {
+  min-height: 100dvh;
+}
+
 .brand-custom-column {
   display: flex;
   flex-direction: column;
-  min-height: calc(100dvh - 2 * clamp(40px, 7vw, 80px));
+  flex: 1 1 auto;
+  min-height: 100%;
 }
 
 .brand-custom-main {
   flex: 1 1 auto;
+}
+
+.brand-footer {
+  margin-block-start: auto;
+}
+
+/* Keep name + About/Writing on one row on small screens.
+   Must beat brand.css mobile :has() stacking (0,4,0). */
+@media (max-width: 599px) {
+  .brand-report .brand-masthead:has(> .brand-identity):has(> .brand-document-meta) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--brand-space-3);
+    grid-template-columns: unset;
+  }
+
+  .brand-report .brand-masthead:has(> .brand-identity):has(> .brand-document-meta) > .brand-identity,
+  .brand-report .brand-masthead:has(> .brand-identity):has(> .brand-document-meta) > .brand-document-meta {
+    grid-column: unset;
+    grid-row: unset;
+  }
+
+  .brand-report .brand-masthead:has(> .brand-identity):has(> .brand-document-meta) > .brand-identity {
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .brand-report .brand-masthead:has(> .brand-identity):has(> .brand-document-meta) > .brand-document-meta {
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+  }
+
+  .brand-custom-path {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--brand-space-1);
+    grid-template-columns: none;
+    grid-template-areas: none;
+  }
+
+  .brand-custom-path-company {
+    order: 1;
+  }
+
+  .brand-custom-path-roles {
+    order: 2;
+  }
+
+  .brand-custom-path-span {
+    order: 3;
+  }
 }
 
 ::view-transition {
@@ -143,12 +208,41 @@ body {
 
 .brand-custom-path {
   display: grid;
-  grid-template-columns: 7.5rem minmax(0, 1fr);
+  grid-template-columns: 8.5rem minmax(0, 1fr);
   column-gap: var(--brand-space-4);
+  row-gap: var(--brand-space-1);
   align-items: baseline;
+  grid-template-areas:
+    "span company"
+    ". roles";
 }
 
 .brand-custom-path > * {
+  margin: 0;
+}
+
+.brand-custom-path-span {
+  grid-area: span;
+  margin: 0;
+}
+
+.brand-custom-path-company {
+  grid-area: company;
+  margin: 0;
+  color: var(--brand-gray-1000);
+  font-weight: var(--brand-weight-medium);
+}
+
+.brand-custom-path-roles {
+  grid-area: roles;
+  list-style: none;
+  display: grid;
+  gap: var(--brand-space-1);
+  margin: 0;
+  padding: 0;
+}
+
+.brand-custom-path-roles > li {
   margin: 0;
 }
 
@@ -177,9 +271,46 @@ body {
   margin: 0;
 }
 
+/* Blog post: date + description side by side on desktop, stacked on mobile. */
+.brand-custom-post-header {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: var(--brand-space-2) var(--brand-space-4);
+  max-width: var(--brand-reading-width);
+}
+
+.brand-custom-post-header > * {
+  margin: 0;
+}
+
+.brand-custom-post-date {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.brand-custom-post-desc {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+@media (max-width: 599px) {
+  .brand-custom-post-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--brand-space-2);
+  }
+}
+
 .brand-custom-identity-link {
   color: inherit;
   text-decoration: none;
+}
+
+.brand-custom-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--brand-space-2) var(--brand-space-4);
 }
 
 .brand-custom-identity-link:hover {
@@ -201,9 +332,12 @@ body {
   max-width: var(--brand-title-measure);
 }
 
-@media (max-width: 599px) {
-  .brand-custom-path {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--brand-space-1);
-  }
+.brand-header > .brand-custom-post-header {
+  grid-column: 1 / span 8;
+  max-width: var(--brand-reading-width);
+}
+
+.brand-header > .brand-custom-post-header + *,
+.brand-header > * + .brand-custom-post-header {
+  margin-block-start: var(--brand-flow-copy);
 }

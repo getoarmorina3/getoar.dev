@@ -33,15 +33,21 @@ export const metadata: Metadata = {
   publisher: site.name,
   keywords: [
     "Getoar Morina",
+    "getoar.dev",
     "web engineer",
+    "frontend engineer",
     "product interfaces",
+    "UI engineering",
     "Next.js",
     "React",
-    "frontend",
+    "TypeScript",
     "Kosovo",
-    "AI workflows",
+    "remote web engineer",
+    "design systems",
+    "clean code",
   ],
   category: "technology",
+  referrer: "origin-when-cross-origin",
   formatDetection: {
     email: false,
     address: false,
@@ -50,8 +56,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
     types: {
-      "application/rss+xml": absoluteUrl("/feed.xml"),
-      "text/plain": absoluteUrl("/llms.txt"),
+      "application/rss+xml": [
+        { url: absoluteUrl("/feed.xml"), title: `${site.name} Writing` },
+      ],
+      "text/plain": [
+        { url: absoluteUrl("/llms.txt"), title: "llms.txt" },
+        { url: absoluteUrl("/llms-full.txt"), title: "llms-full.txt" },
+      ],
     },
   },
   openGraph: {
@@ -77,6 +88,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
       "max-video-preview": -1,
     },
+  },
+  other: {
+    "ai-content": absoluteUrl("/llms.txt"),
   },
 };
 

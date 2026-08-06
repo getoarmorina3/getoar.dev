@@ -1,14 +1,13 @@
-/** Jobs-keynote field: void black, soft vignette, film grain. Text only. */
+/** Centered OG card inspired by ik-montage.de — dark field, grain, title + tracked brand. */
 export const ogSize = {
   width: 1200,
   height: 630,
 } as const;
 
-/** Tiny fractal-noise tile — opacity keeps it atmospheric, not gritty. */
 export const ogGrainDataUri = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
   `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160">
     <filter id="n">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/>
     </filter>
     <rect width="100%" height="100%" filter="url(#n)"/>
   </svg>`,
@@ -17,17 +16,22 @@ export const ogGrainDataUri = `data:image/svg+xml;charset=utf-8,${encodeURICompo
 const typeface =
   'ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif';
 
+function titleFontSize(title: string) {
+  if (title.length > 60) return 48;
+  if (title.length > 42) return 56;
+  if (title.length > 28) return 68;
+  if (title.length > 16) return 84;
+  return 104;
+}
+
 export function OgFrame({
-  eyebrow,
   title,
-  footer,
+  brand = "GETOAR.DEV",
 }: {
-  eyebrow: string;
   title: string;
-  footer?: string;
+  brand?: string;
 }) {
-  const titleSize =
-    title.length > 56 ? 52 : title.length > 36 ? 64 : title.length > 22 ? 76 : 88;
+  const size = titleFontSize(title);
 
   return (
     <div
@@ -36,34 +40,32 @@ export function OgFrame({
         height: "100%",
         display: "flex",
         position: "relative",
-        background: "#050505",
-        color: "#f5f5f5",
+        background: "#0a0a0a",
+        color: "#ffffff",
         fontFamily: typeface,
       }}
     >
-      {/* Soft radial wash — stage light, not a purple glow */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           display: "flex",
           backgroundImage:
-            "radial-gradient(ellipse 80% 70% at 50% 42%, #1c1c1c 0%, #0c0c0c 52%, #050505 100%)",
+            "radial-gradient(ellipse 70% 65% at 50% 50%, #161616 0%, #0a0a0a 55%, #050505 100%)",
         }}
       />
 
-      {/* Warm edge falloff */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           display: "flex",
           backgroundImage:
-            "linear-gradient(165deg, rgba(255,255,255,0.04) 0%, transparent 38%, transparent 62%, rgba(0,0,0,0.55) 100%)",
+            "radial-gradient(ellipse 90% 80% at 80% 40%, rgba(255,255,255,0.04) 0%, transparent 50%)",
         }}
       />
 
-      {/* Grain */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={ogGrainDataUri}
         alt=""
@@ -74,12 +76,11 @@ export function OgFrame({
           inset: 0,
           width: "100%",
           height: "100%",
-          opacity: 0.14,
+          opacity: 0.16,
           objectFit: "cover",
         }}
       />
 
-      {/* Content */}
       <div
         style={{
           position: "relative",
@@ -87,59 +88,40 @@ export function OgFrame({
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          padding: "68px 76px",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "64px 80px",
+          gap: 28,
         }}
       >
         <div
           style={{
             display: "flex",
-            fontSize: 22,
-            fontWeight: 400,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color: "rgba(245,245,245,0.48)",
+            justifyContent: "center",
+            textAlign: "center",
+            fontSize: size,
+            fontWeight: 700,
+            letterSpacing: "-0.04em",
+            lineHeight: 1.08,
+            color: "#ffffff",
+            maxWidth: 1000,
           }}
         >
-          {eyebrow}
+          {title}
         </div>
 
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            gap: 28,
-            maxWidth: 980,
+            fontSize: 22,
+            fontWeight: 500,
+            letterSpacing: "0.42em",
+            textTransform: "uppercase" as const,
+            color: "rgba(255,255,255,0.92)",
+            paddingLeft: "0.42em",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              fontSize: titleSize,
-              fontWeight: 500,
-              letterSpacing: "-0.045em",
-              lineHeight: 1.05,
-              color: "#fafafa",
-            }}
-          >
-            {title}
-          </div>
-
-          {footer ? (
-            <div
-              style={{
-                display: "flex",
-                fontSize: 26,
-                fontWeight: 400,
-                letterSpacing: "-0.01em",
-                lineHeight: 1.35,
-                color: "rgba(245,245,245,0.55)",
-                maxWidth: 720,
-              }}
-            >
-              {footer}
-            </div>
-          ) : null}
+          {brand}
         </div>
       </div>
     </div>
