@@ -11,7 +11,7 @@ export const contentType = "image/png";
 
 export default async function Image() {
   return new ImageResponse(
-    <OgFrame title={site.name} brand="getoar.dev" />,
+    <OgFrame title={site.name} brand="hello@getoar.dev" />,
     await ogOptions(),
   );
 }
