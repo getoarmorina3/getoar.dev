@@ -1,9 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-import {
-  darkLightGradientOg,
-  darkLightGrainDataUri,
-} from "@/lib/dark-light";
+import { darkLightGradientOg } from "@/lib/dark-light";
 
 export const ogSize = {
   width: 1200,
@@ -11,22 +8,14 @@ export const ogSize = {
 } as const;
 
 export async function getOgFonts() {
-  const dir = join(process.cwd(), "lib/fonts");
-  const [light, regular] = await Promise.all([
-    readFile(join(dir, "SourceSans3-Light.ttf")),
-    readFile(join(dir, "SourceSans3-Regular.ttf")),
-  ]);
+  const data = await readFile(
+    join(process.cwd(), "lib/fonts/Geist-Regular.ttf"),
+  );
 
   return [
     {
-      name: "Source Sans 3",
-      data: light,
-      weight: 300 as const,
-      style: "normal" as const,
-    },
-    {
-      name: "Source Sans 3",
-      data: regular,
+      name: "Geist",
+      data,
       weight: 400 as const,
       style: "normal" as const,
     },
@@ -48,7 +37,7 @@ function titleFontSize(title: string) {
   return 92;
 }
 
-/** ik-montage field: soft top-right light, grain, centered light type. */
+/** Soft top-right light field, centered title in Geist. */
 export function OgFrame({
   title,
   brand = "getoar.dev",
@@ -71,26 +60,10 @@ export function OgFrame({
         backgroundColor: "#000000",
         backgroundImage: darkLightGradientOg,
         color: "#ffffff",
-        fontFamily: '"Source Sans 3"',
+        fontFamily: "Geist",
         padding: "88px 112px 120px",
       }}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={darkLightGrainDataUri}
-        alt=""
-        width={1200}
-        height={630}
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          opacity: 0.18,
-          objectFit: "cover",
-        }}
-      />
-
       <div
         style={{
           position: "relative",
@@ -98,8 +71,8 @@ export function OgFrame({
           justifyContent: "center",
           textAlign: "center",
           fontSize: size,
-          fontWeight: 300,
-          letterSpacing: "-0.03em",
+          fontWeight: 400,
+          letterSpacing: "-0.05em",
           lineHeight: 1.1,
           color: "#ffffff",
           maxWidth: 880,
