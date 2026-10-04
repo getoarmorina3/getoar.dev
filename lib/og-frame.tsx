@@ -1,35 +1,52 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { darkLightGradientOg } from "@/lib/dark-light";
 
 export const ogSize = {
   width: 1200,
   height: 630,
 } as const;
 
-export const ogColors = {
-  bg: "#f4ede1",
-  ink: "#2a2bd8",
-} as const;
-
-export async function ogOptions() {
+export async function getOgFonts() {
   const data = await readFile(
-    join(process.cwd(), "lib/fonts/Jersey10-Regular.ttf"),
+    join(process.cwd(), "lib/fonts/Geist-Regular.ttf"),
   );
 
+  return [
+    {
+      name: "Geist",
+      data,
+      weight: 400 as const,
+      style: "normal" as const,
+    },
+  ];
+}
+
+export async function ogOptions() {
   return {
     ...ogSize,
-    fonts: [
-      {
-        name: "Jersey",
-        data,
-        weight: 400 as const,
-        style: "normal" as const,
-      },
-    ],
+    fonts: await getOgFonts(),
   };
 }
 
-export function OgFrame({ lines, footer }: { lines: string[]; footer: string }) {
+function titleFontSize(title: string) {
+  if (title.length > 60) return 44;
+  if (title.length > 42) return 52;
+  if (title.length > 28) return 64;
+  if (title.length > 16) return 76;
+  return 92;
+}
+
+/** Soft top-right light field, centered title in Geist. */
+export function OgFrame({
+  title,
+  brand = "hello@getoar.dev",
+}: {
+  title: string;
+  brand?: string;
+}) {
+  const size = titleFontSize(title);
+
   return (
     <div
       style={{
@@ -40,28 +57,45 @@ export function OgFrame({ lines, footer }: { lines: string[]; footer: string }) 
         alignItems: "center",
         justifyContent: "center",
         position: "relative",
-        backgroundColor: ogColors.bg,
-        color: ogColors.ink,
-        fontFamily: "Jersey",
+        backgroundColor: "#000000",
+        backgroundImage: darkLightGradientOg,
+        color: "#ffffff",
+        fontFamily: "Geist",
+        padding: "88px 112px 120px",
       }}
     >
-      {lines.map((line) => (
-        <div
-          key={line}
-          style={{ display: "flex", fontSize: 220, lineHeight: 0.8 }}
-        >
-          {line}
-        </div>
-      ))}
+      <div
+        style={{
+          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+          textAlign: "center",
+          fontSize: size,
+          fontWeight: 400,
+          letterSpacing: "-0.05em",
+          lineHeight: 1.1,
+          color: "#ffffff",
+          maxWidth: 880,
+        }}
+      >
+        {title}
+      </div>
+
       <div
         style={{
           position: "absolute",
-          bottom: 48,
+          left: 0,
+          right: 0,
+          bottom: 52,
           display: "flex",
-          fontSize: 40,
+          justifyContent: "center",
+          fontSize: 20,
+          fontWeight: 400,
+          letterSpacing: "0.02em",
+          color: "rgba(255,255,255,0.62)",
         }}
       >
-        {footer}
+        {brand.toLowerCase()}
       </div>
     </div>
   );

@@ -41,18 +41,10 @@ const regulars: Regular[] = [
     whoami: "the owner. we close at 11. no exceptions. (there are exceptions.)",
     cs: "who left this running? *closes it*",
   },
-  {
-    id: "cat",
-    name: "the cat",
-    greeting: "*sits on the keyboard*",
-    whoami: "meow",
-    cs: "meow",
-  },
 ];
 
-const RATE_PER_HOUR = 0.5;
+const RATE_PER_HOUR = 1.5;
 const KEY_COUNT = 36;
-const MASH = "asdfghjkl;qwertyuiopzxcvbnm";
 
 type Line = { text: string; input?: boolean; href?: string };
 type Phase = "idle" | "boot" | "on";
@@ -153,14 +145,6 @@ export function CafeBooth() {
     if (!who) return [];
     const cmd = raw.trim().toLowerCase();
 
-    if (who.id === "cat") {
-      if (randomInt(10) < 3) {
-        setExtras((e) => e + 0.5);
-        return [{ text: "the cat knocked the coffee over. +€0.50" }];
-      }
-      return [{ text: "meow" }];
-    }
-
     switch (cmd) {
       case "":
         return [];
@@ -236,14 +220,6 @@ export function CafeBooth() {
   }
 
   function onChange(value: string) {
-    if (who?.id === "cat" && value.length > input.length) {
-      const mash = Array.from(
-        { length: value.length - input.length },
-        () => MASH[randomInt(MASH.length)],
-      ).join("");
-      setInput(input + mash);
-      return;
-    }
     setInput(value);
   }
 

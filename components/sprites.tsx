@@ -44,20 +44,6 @@ const maps = {
     "xxxxoxxxxx",
     "xxxxoxxxxx",
   ],
-  cat: [
-    "..........",
-    "..........",
-    ".x......x.",
-    ".xx....xx.",
-    ".xxxxxxxx.",
-    ".xoxxxxox.",
-    ".xxxxxxxx.",
-    "..xxooxx..",
-    "..xxxxxx..",
-    "..xxxxxx.x",
-    "..xxxxxx.x",
-    "..xxxxxxxx",
-  ],
 } as const;
 
 export type SpriteId = keyof typeof maps;

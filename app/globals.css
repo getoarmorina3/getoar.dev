@@ -8,12 +8,9 @@
   );
   --font-pixel: var(--font-jersey), var(--font-mono);
 
-  --bg: light-dark(#f4ede1, #14131c);
-  --ink: light-dark(#2a2bd8, #9b9dff);
-  --ink-soft: light-dark(
-    color-mix(in oklab, #2a2bd8 45%, #f4ede1),
-    color-mix(in oklab, #9b9dff 45%, #14131c)
-  );
+  --bg: light-dark(#ffffff, #000000);
+  --ink: light-dark(#111111, #f2f2f2);
+  --ink-soft: light-dark(#b5b5b5, #6e6e6e);
 
   color-scheme: light dark;
   background: var(--bg);
