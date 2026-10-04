@@ -1,6 +1,6 @@
 # getoar.dev
 
-Personal portfolio — Next.js App Router, MDX writing, CSS Modules.
+One-page personal site with a tiny internet café booth to play with. Next.js App Router, CSS Modules.
 
 ```bash
 pnpm install
