@@ -27,6 +27,7 @@
   position: relative;
   display: grid;
   grid-template-columns: 72px auto 58px;
+  grid-template-areas: "seat station tower";
   align-items: end;
   gap: 18px;
   padding: 16px 16px 0;
@@ -49,6 +50,7 @@
 }
 
 .station {
+  grid-area: station;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -230,6 +232,7 @@
 /* —— Tower —— */
 
 .tower {
+  grid-area: tower;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -262,6 +265,7 @@
 /* —— Seat —— */
 
 .seat {
+  grid-area: seat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -412,6 +416,7 @@
 @media (max-width: 520px) {
   .desk {
     grid-template-columns: 60px auto;
+    grid-template-areas: "seat station";
     gap: 10px;
     padding-inline: 8px;
   }
