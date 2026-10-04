@@ -1,18 +1,4 @@
-/* Design tokens + document reset. Component styles live in *.module.css. */
-
 :root {
-  --vt-exit: 120ms;
-  --vt-enter: 180ms;
-  --vt-morph: 280ms;
-
-  --font-sans: var(
-    --font-geist-sans,
-    "Geist",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif
-  );
   --font-mono: var(
     --font-geist-mono,
     "Geist Mono",
@@ -20,143 +6,45 @@
     Consolas,
     monospace
   );
+  --font-pixel: var(--font-jersey), var(--font-mono);
 
-  --bg: light-dark(oklch(1 0 0), oklch(0 0 0));
-  --gray-100: light-dark(oklch(0.961 0 0), oklch(0.218 0 0));
-  --gray-400: light-dark(oklch(0.937 0 0), oklch(0.301 0 0));
-  --gray-600: light-dark(oklch(0.732 0 0), oklch(0.623 0 0));
-  --gray-900: light-dark(oklch(0.42 0 0), oklch(0.706 0 0));
-  --gray-1000: light-dark(oklch(0.205 0 0), oklch(0.946 0 0));
-  --focus: light-dark(
-    oklch(57.61% 0.2508 258.23),
-    oklch(71.7% 0.1648 250.794)
+  --bg: light-dark(#f4ede1, #14131c);
+  --ink: light-dark(#2a2bd8, #9b9dff);
+  --ink-soft: light-dark(
+    color-mix(in oklab, #2a2bd8 45%, #f4ede1),
+    color-mix(in oklab, #9b9dff 45%, #14131c)
   );
 
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-6: 24px;
-  --space-8: 32px;
-  --space-10: 40px;
-  --space-12: 48px;
-  --space-16: 64px;
-
-  --radius-sm: 6px;
-  --radius: 8px;
-
-  --type-page-title: 2.5rem;
-  --type-title: 2rem;
-  --type-section: 1.5rem;
-  --type-subsection: 1.25rem;
-  --type-lede: 1.125rem;
-  --type-compact: 0.875rem;
-  --type-label: 0.8125rem;
-  --type-meta: 0.8125rem;
-
-  --weight-regular: 400;
-  --weight-heading: 450;
-  --weight-medium: 500;
-
-  --leading-body: 24px;
-  --leading-compact: 20px;
-  --leading-caption: 18px;
-  --leading-page-title: 48px;
-  --leading-title: 40px;
-  --leading-section: 32px;
-  --leading-subsection: 26px;
-  --leading-lede: 28px;
-
-  --flow-tight: var(--space-2);
-  --flow-copy: var(--space-4);
-  --flow-group: var(--space-8);
-  --flow-section: var(--space-16);
-
-  --reading-width: 68ch;
-  --title-measure: 24ch;
-  --content-width: 1200px;
-
-  color-scheme: light;
+  color-scheme: light dark;
   background: var(--bg);
-  color: var(--gray-1000);
+  color: var(--ink);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html,
 body {
   margin: 0;
-  min-height: 100%;
   min-height: 100dvh;
   background: inherit;
   color: inherit;
 }
 
-html {
+body {
+  font-family: var(--font-mono);
   -webkit-font-smoothing: antialiased;
 }
 
-::view-transition {
-  pointer-events: none;
+::selection {
+  background: var(--ink);
+  color: var(--bg);
 }
 
-::view-transition-group(site-masthead) {
-  animation: none;
-  z-index: 100;
-}
-
-::view-transition-old(site-masthead) {
-  display: none;
-}
-
-::view-transition-new(site-masthead) {
-  animation: none;
-}
-
-::view-transition-group(.title-morph) {
-  animation-duration: var(--vt-morph);
-  animation-timing-function: ease;
-}
-
-::view-transition-image-pair(.title-morph) {
-  animation-name: vt-soft-blur;
-  animation-duration: var(--vt-morph);
-  animation-timing-function: ease;
-}
-
-::view-transition-old(.soft-fade) {
-  animation: var(--vt-exit) ease-out both vt-fade reverse;
-}
-
-::view-transition-new(.soft-fade) {
-  animation: var(--vt-enter) ease-out var(--vt-exit) both vt-fade;
-}
-
-@keyframes vt-fade {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes vt-soft-blur {
-  35% {
-    filter: blur(2px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(*),
-  ::view-transition-new(*),
-  ::view-transition-group(*) {
-    animation-duration: 0s !important;
-    animation-delay: 0s !important;
-  }
+:focus-visible {
+  outline: 2px dashed var(--ink);
+  outline-offset: 3px;
 }

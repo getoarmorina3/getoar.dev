@@ -3,27 +3,9 @@ export const site = {
   title: "Web Engineer",
   location: "Kosovo",
   email: "hello@getoar.dev",
-  socials: [
-    {
-      label: "hello@getoar.dev",
-      href: "mailto:hello@getoar.dev",
-    },
-    {
-      label: "GitHub",
-      href: "https://github.com/getoarmorina3",
-    },
-    {
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/getoarmorina/",
-    },
-  ],
+  github: "https://github.com/getoarmorina3",
   bio: [
-    "I am a web engineer based in Kosovo, Europe. Currently working remotely on product interfaces, web apps, and the systems behind them. I care about design, architecture, and clean code.",
-    "I grew up around computers. My dad opened an internet café in 2003, the year I was born, and it is still running. That room was my early classroom. In high school I took a tech job and never really left. I finished school while working, and kept going through college.",
+    "web engineer from kosovo. i build interfaces and the systems behind them, and i'm picky about clean code.",
+    "i grew up in my dad's internet café. it opened in 2003, the year i was born, and it's still running. this is one of its booths. pull up a regular.",
   ],
-  education: {
-    school: "UBT College",
-    degree: "BSc Computer Science",
-    years: "2021 – 2024",
-  },
 } as const;
