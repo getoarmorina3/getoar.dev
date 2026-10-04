@@ -15,8 +15,8 @@
   padding: 2px 12px 0;
   border: 2px solid var(--ink);
   border-radius: 4px;
-  font-family: var(--font-pixel);
-  font-size: 22px;
+  font-size: 0.8125rem;
+  letter-spacing: -0.02em;
   line-height: 1.2;
   rotate: -2deg;
 }
@@ -125,7 +125,6 @@
 .idle {
   position: absolute;
   inset: 0;
-  font-family: var(--font-pixel);
 }
 
 .saverX {

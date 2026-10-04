@@ -1,4 +1,14 @@
+/* Design tokens carried over from the previous site. */
+
 :root {
+  --font-sans: var(
+    --font-geist-sans,
+    "Geist",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif
+  );
   --font-mono: var(
     --font-geist-mono,
     "Geist Mono",
@@ -6,18 +16,31 @@
     Consolas,
     monospace
   );
-  --font-pixel: var(--font-jersey), var(--font-mono);
 
-  --bg: light-dark(#f4ede1, #14131c);
-  --ink: light-dark(#2a2bd8, #9b9dff);
-  --ink-soft: light-dark(
-    color-mix(in oklab, #2a2bd8 45%, #f4ede1),
-    color-mix(in oklab, #9b9dff 45%, #14131c)
+  --bg: light-dark(oklch(1 0 0), oklch(0 0 0));
+  --gray-100: light-dark(oklch(0.961 0 0), oklch(0.218 0 0));
+  --gray-400: light-dark(oklch(0.937 0 0), oklch(0.301 0 0));
+  --gray-600: light-dark(oklch(0.732 0 0), oklch(0.623 0 0));
+  --gray-900: light-dark(oklch(0.42 0 0), oklch(0.706 0 0));
+  --gray-1000: light-dark(oklch(0.205 0 0), oklch(0.946 0 0));
+  --focus: light-dark(
+    oklch(57.61% 0.2508 258.23),
+    oklch(71.7% 0.1648 250.794)
   );
 
-  color-scheme: light dark;
+  /* Booth drawings follow the same ink as the type. */
+  --ink: var(--gray-1000);
+  --ink-soft: var(--gray-600);
+
+  color-scheme: light;
   background: var(--bg);
-  color: var(--ink);
+  color: var(--gray-1000);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
 }
 
 *,
@@ -35,16 +58,19 @@ body {
 }
 
 body {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
+  font-feature-settings: "rlig" 1, "calt" 0, "ss11" 1;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: var(--ink);
+  background: var(--gray-1000);
   color: var(--bg);
 }
 
 :focus-visible {
-  outline: 2px dashed var(--ink);
+  outline: 2px solid var(--focus);
   outline-offset: 3px;
 }

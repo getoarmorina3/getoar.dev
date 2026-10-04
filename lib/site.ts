@@ -4,7 +4,7 @@ export const siteUrl = (
 ).replace(/\/$/, "");
 
 export const siteDescription =
-  "Getoar Morina is a web engineer from Kosovo who grew up in his dad's internet café.";
+  "Getoar Morina is a web engineer based in Kosovo, Europe. He builds product interfaces and web apps with a focus on design detail, clean code, and best practices.";
 
 export function absoluteUrl(path = "/") {
   if (path.startsWith("http")) return path;
