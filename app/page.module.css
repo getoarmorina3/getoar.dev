@@ -9,22 +9,24 @@
 }
 
 .title {
+  display: flex;
+  flex-direction: column;
   margin: 0;
-  font-size: clamp(64px, 12vw, 128px);
-  font-weight: 450;
-  line-height: 0.95;
-  letter-spacing: -0.06em;
+  font-family: var(--font-pixel);
+  font-size: clamp(96px, 19vw, 232px);
+  font-weight: 400;
+  line-height: 0.78;
+  letter-spacing: -0.01em;
   text-align: center;
 }
 
 .copy {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  max-width: 52ch;
-  color: var(--gray-900);
-  font-size: 1rem;
-  line-height: 1.6;
+  gap: 18px;
+  max-width: 48ch;
+  font-size: 13px;
+  line-height: 1.7;
   text-align: center;
   text-wrap: pretty;
 }
@@ -44,25 +46,24 @@
 
 .sayHi {
   color: inherit;
-  font-size: clamp(40px, 6vw, 64px);
-  font-weight: 450;
-  letter-spacing: -0.05em;
-  line-height: 1;
+  font-family: var(--font-pixel);
+  font-size: clamp(64px, 11vw, 140px);
+  line-height: 0.85;
   text-decoration: none;
 }
 
 .sayHi:hover,
 .links a:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
+  text-decoration: underline wavy;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.12em;
 }
 
 .links {
   display: flex;
   gap: 10px;
   margin: 0;
-  color: var(--gray-900);
-  font-size: 0.8125rem;
+  font-size: 12px;
 }
 
 .links a {

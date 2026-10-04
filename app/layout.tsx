@@ -1,17 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Jersey_10 } from "next/font/google";
 import { JsonLd, personJsonLd, websiteJsonLd } from "@/components/json-ld";
 import { site } from "@/content/site";
 import { siteDescription, siteUrl } from "@/lib/site";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jersey = Jersey_10({
+  variable: "--font-jersey",
+  weight: "400",
   subsets: ["latin"],
 });
 
@@ -55,7 +56,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${geistMono.variable} ${jersey.variable}`}>
       <body>
         <JsonLd data={[personJsonLd(), websiteJsonLd()]} />
         {children}
