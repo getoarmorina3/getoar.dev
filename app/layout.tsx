@@ -16,9 +16,11 @@ const jersey = Jersey_10({
   subsets: ["latin"],
 });
 
+const metaTitle = "getoar, web engineer";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: `${site.name} · ${site.title}`,
+  title: metaTitle,
   description: siteDescription,
   applicationName: site.name,
   authors: [{ name: site.name, url: siteUrl }],
@@ -36,12 +38,12 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: site.name,
-    title: `${site.name} · ${site.title}`,
+    title: metaTitle,
     description: siteDescription,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} · ${site.title}`,
+    title: metaTitle,
     description: siteDescription,
   },
 };
